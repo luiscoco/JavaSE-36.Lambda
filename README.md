@@ -60,31 +60,35 @@ public class LambdaExample {
 
 Let's delve into some more advanced concepts related to lambda expressions and functional interfaces in Java.
 
-1. Method References:
-Method references provide a shorthand notation to refer to methods by their names. They are a syntactic sugar for lambda expressions. There are several types of method references:
+### 3.1. Method References:
 
-Static Method Reference:
+Method references provide a shorthand notation to refer to methods by their names. 
 
-java
-Copy code
+They are a syntactic sugar for lambda expressions. There are several types of method references:
+
+#### Static Method Reference:
+
+```java
 // Lambda expression
 Function<String, Integer> parseIntLambda = s -> Integer.parseInt(s);
 
 // Static method reference
 Function<String, Integer> parseIntReference = Integer::parseInt;
-Instance Method Reference on a Particular Instance:
+```
 
-java
-Copy code
+#### Instance Method Reference on a Particular Instance:
+
+```java
 // Lambda expression
 BiFunction<String, String, Boolean> startsWithLambda = (s1, s2) -> s1.startsWith(s2);
 
 // Instance method reference
 BiFunction<String, String, Boolean> startsWithReference = String::startsWith;
-Instance Method Reference on an Arbitrary Instance:
+```
 
-java
-Copy code
+#### Instance Method Reference on an Arbitrary Instance:
+
+```java
 List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
 
 // Lambda expression
@@ -92,11 +96,15 @@ names.forEach(name -> System.out.println(name));
 
 // Instance method reference on an arbitrary instance
 names.forEach(System.out::println);
-2. Default Methods in Functional Interfaces:
-Java 8 introduced the concept of default methods in interfaces, allowing the addition of new methods to interfaces without breaking existing implementations. Functional interfaces can have default methods.
+```
 
-java
-Copy code
+### 3.2. Default Methods in Functional Interfaces:
+
+Java 8 introduced the concept of default methods in interfaces, allowing the addition of new methods to interfaces without breaking existing implementations. 
+
+Functional interfaces can have default methods.
+
+```java
 @FunctionalInterface
 interface MyFunction {
     int apply(int x, int y);
@@ -113,40 +121,52 @@ public class LambdaExample {
         addFunction.printResult(result);
     }
 }
-3. Predicate, Function, and Consumer Interfaces:
+```
+
+### 3.3. Predicate, Function, and Consumer Interfaces:
+
 Java provides several functional interfaces in the java.util.function package. Here are three commonly used ones:
 
-Predicate: Represents a predicate (boolean-valued function) of one argument.
+#### Predicate: Represents a predicate (boolean-valued function) of one argument.
 
-java
-Copy code
+```java
 Predicate<String> isLong = s -> s.length() > 5;
-Function: Represents a function that accepts one argument and produces a result.
+```
 
-java
-Copy code
+#### Function: Represents a function that accepts one argument and produces a result.
+
+```java
 Function<Integer, String> intToString = Object::toString;
-Consumer: Represents an operation that accepts a single input argument and returns no result.
+```
 
-java
-Copy code
+#### Consumer: Represents an operation that accepts a single input argument and returns no result.
+
+```java
 Consumer<String> printUpperCase = s -> System.out.println(s.toUpperCase());
-4. Streams and Collectors:
-Lambda expressions are commonly used in conjunction with the Streams API for processing sequences of elements. The map, filter, and reduce operations are often used with lambda expressions.
+```
 
-java
-Copy code
+### 3.4. Streams and Collectors:
+
+Lambda expressions are commonly used in conjunction with the Streams API for processing sequences of elements. 
+
+The map, filter, and reduce operations are often used with lambda expressions.
+
+```java
 List<String> words = Arrays.asList("Java", "is", "fun");
 
 // Using streams and lambda expressions
 List<String> uppercasedWords = words.stream()
                                    .map(String::toUpperCase)
                                    .collect(Collectors.toList());
-5. Functional Programming Patterns:
-Lambda expressions enable the use of functional programming patterns, such as map-reduce and filter-map-reduce, in Java. These patterns can lead to more concise and expressive code.
+```
 
-java
-Copy code
+### 3.5. Functional Programming Patterns:
+
+Lambda expressions enable the use of functional programming patterns, such as map-reduce and filter-map-reduce, in Java. 
+
+These patterns can lead to more concise and expressive code.
+
+```java
 List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
 
 // Using functional programming patterns
@@ -154,10 +174,12 @@ int sum = numbers.stream()
                  .filter(n -> n % 2 == 0)
                  .mapToInt(Integer::intValue)
                  .sum();
+```
+
 These advanced features make Java's functional programming capabilities more powerful and expressive, allowing developers to write clean and concise code.
-In this example, MyFunction is a functional interface with a single abstract method (apply). The lambda expression is used to provide the implementation of that method.
+
+In this example, MyFunction is a functional interface with a single abstract method (apply). 
+
+The lambda expression is used to provide the implementation of that method.
 
 Lambda expressions and functional interfaces together make it easier to write concise and expressive code, especially when working with APIs that rely on functional programming concepts.
-
-
-
